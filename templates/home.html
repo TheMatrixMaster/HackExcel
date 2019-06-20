@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity=''></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <title>HackExcel</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='advanced-technology-512.png')}}">
+  </head>
+  <style type="text/css">
+    /*
+     * Globals
+     */
+
+    /* Links */
+    a,
+    a:focus,
+    a:hover {
+      color: #fff;
+    }
+
+    /* Custom default button */
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      color: #333;
+      text-shadow: none; /* Prevent inheritance from `body` */
+      background-color: #fff;
+      border: .05rem solid #fff;
+    }
+
+
+    /*
+     * Base structure
+     */
+
+    html,
+    body {
+      height: 100%;
+      background-color: #333;
+    }
+
+    body {
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -ms-flex-pack: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+      box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    }
+
+    .cover-container {
+      max-width: 55em;
+    }
+
+
+    /*
+     * Header
+     */
+    .masthead {
+      margin-bottom: 2rem;
+    }
+
+    .masthead-brand {
+      margin-bottom: 0;
+    }
+
+    .nav-masthead .nav-link {
+      padding: .25rem 0;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .5);
+      background-color: transparent;
+      border-bottom: .25rem solid transparent;
+    }
+
+    .nav-masthead .nav-link:hover,
+    .nav-masthead .nav-link:focus {
+      border-bottom-color: rgba(255, 255, 255, .25);
+    }
+
+    .nav-masthead .nav-link + .nav-link {
+      margin-left: 1rem;
+    }
+
+    .nav-masthead .active {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+
+    @media (min-width: 48em) {
+      .masthead-brand {
+        float: left;
+      }
+      .nav-masthead {
+        float: right;
+      }
+    }
+
+
+    /*
+     * Cover
+     */
+    .cover {
+      padding: 0 1.5rem;
+    }
+    .cover .btn-lg {
+      padding: .75rem 1.25rem;
+      font-weight: 700;
+    }
+
+
+    /*
+     * Footer
+     */
+    .mastfoot {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    .dot {
+      height: 50px;
+      width: 300px;
+      background-color: green;
+      border-radius: 10px;
+      display: block;
+      text-align: center;
+      vertical-align: middle;
+      margin-bottom: -20px;
+      margin-left: 40px;
+      float: left;
+    }
+  </style>
+  <body background="{{url_for('static', filename='background.jpg')}}" style="background-size: 1550px 800px;">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header style="margin-bottom: 40px;">
+        <div class="inner">
+          <a href="/home"><h3 class="masthead-brand" style="margin-top: 5px;">HackExcel</h3><img src="{{url_for('static', filename='advanced-technology-512.png')}}" style="display: inline; height: 45px; width: auto; margin-left: 5px;"></a>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/home">Hack</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+      <a href="https://dynamicrisk.net/" style="align-self: center; margin-bottom: 50px;"><img src="https://dynamicrisk.net/wp-content/themes/dynamicrisk/img/logo.png" style="height: 30px; width: auto;"></a>
+      <main role="main" class="inner cover">
+
+        <h1 class="cover-heading">Convert Your Excel File</h1>
+        <p class="lead">Upload your excel file, choose the columns you want to parse, change the column names and let HackExcel create a clean, synthesized version of the data you need.</p>
+
+        
+        <form method="POST" action="/home" id="file_input" enctype="multipart/form-data" style="display: none; margin-top: 30px;">
+          <span class="dot"><p style="margin-top: 2px;">Step 1: Input Excel File</p></span>
+          <div class="card col-sm" style="border-radius: 15px; margin-top: 40px;">
+            <div class="card-body">
+              <input class="btn btn-lg btn-secondary" style="width: 85%;" type="file" name="excel-file">
+              <button type="submit" class="btn btn-lg btn-secondary" style="padding: 15.75px; float: right;">Submit</button>
+            </div>
+          </div>
+        </form>
+
+        <form method="POST" action="/export" enctype="multipart/form-data" id="data_picker" style="display: none; margin-top: 30px;">
+          <span class="dot" style="width: 400px"><p style="margin-top: 2px;">Step 2: Select and name Data Columns</p></span>
+          <div class="card col-sm" style="border-radius: 15px; margin-top: 40px;">
+            <div class="card-body">
+              {% for s_col in selected_columns %}
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" style="transform: scale(1.2);" name="{{s_col}}" checked>
+                    </div>
+                  </div>
+                  <input type="text" style="margin-left: 10px;" class="form-control" name="{{s_col}}name" value="{{s_col}}">
+                </div>
+              {% endfor %}
+              {% for x_col in other_columns %}
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" style="transform: scale(1.2);" name="{{x_col}}">
+                    </div>
+                  </div>
+                  <input type="text" style="margin-left: 10px;" class="form-control" name="{{x_col}}name" value="{{x_col}}">
+                </div> 
+              {% endfor %}
+              <button type="submit" class="btn btn-lg btn-secondary" style="float: right;">Submit</button>
+            </div>
+          </div>
+        </form>
+
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>An Excel tool created for <a href="https://dynamicrisk.net/">Dynamic Risk</a>, by <a href="https://www.linkedin.com/in/stephen-lu-02/">@Stephen Lu</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        if ("{{key}}" == "False") {
+          var step1 = document.getElementById('file_input');
+          var step2 = document.getElementById('data_picker');
+          step1.style.display = 'block';
+          step2.style.display = 'none';
+        }
+        else if ("{{key}}" == "True") {
+          var step1 = document.getElementById('file_input');
+          var step2 = document.getElementById('data_picker');
+          step1.style.display = 'none';
+          step2.style.display = 'block';
+        }
+    })
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  </body>
+</html>
