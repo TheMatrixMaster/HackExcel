@@ -1,6 +1,5 @@
 import pandas as pd
 import io
-import win32com.client as win32
 
 # step 1: Read Excel Input and determine header row by searching for key word
 def read_file(file):
